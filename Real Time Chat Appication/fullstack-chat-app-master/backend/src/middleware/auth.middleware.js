@@ -4,9 +4,9 @@ import User from "../models/user.model.js";
 export const protectRoute = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
-    console.log(res);
+    console.log(req);
     console.log(token);
-    res.cookie("jwt", token, {
+    req.cookie("jwt", token, {
     httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
     secure: true, // Ensures it's sent only over HTTPS in production
     sameSite: "none", // Allows cross-origin requests (needed for cross-origin requests)
