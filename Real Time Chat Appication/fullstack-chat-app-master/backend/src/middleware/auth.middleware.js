@@ -4,15 +4,16 @@ import User from "../models/user.model.js";
 export const protectRoute = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
-
-    if (!token) {
-      return res.status(401).json({ message: "Unauthorized - No Token Provided" });
-    }
-    res.cookie("authToken", token, {
+    console.log(token);
+    res.cookie("jwt", token, {
     httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
     secure: true, // Ensures it's sent only over HTTPS in production
     sameSite: "none", // Allows cross-origin requests (needed for cross-origin requests)
   });
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized - No Token Provided" });
+    }
+   
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     if (!decoded) {
