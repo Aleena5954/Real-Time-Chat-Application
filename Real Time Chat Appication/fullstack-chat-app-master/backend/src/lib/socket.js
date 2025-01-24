@@ -4,7 +4,7 @@ import express from "express";
 
 const app = express();
 const server = http.createServer(app);
-
+ server.setTimeout(30000);
 const io = new Server(server, {
   cors: {
     origin: ["https://realtimechatapplication21.netlify.app"],
