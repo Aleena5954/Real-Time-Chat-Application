@@ -18,8 +18,13 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
 
+app.use(
+  cors({
+    origin: "https://realtimechatapplication21.netlify.app",
+    credentials: true,
+  })
+);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
